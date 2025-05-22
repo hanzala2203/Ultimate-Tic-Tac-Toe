@@ -1,0 +1,41 @@
+.board-wrapper {
+  text-align: center;
+  margin: 20px;
+  color: #fff;
+}
+
+.game-board {
+  display: grid;
+  margin: 0 auto;
+  gap: 2px;
+  max-width: 90vw;
+}
+
+.cell {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  background-color: #2e8b57;
+  border: 2px solid #1e5631;
+  cursor: pointer;
+}
+
+.cell::after {
+  content: attr(data-value);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.5vw;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.grid-board-container {
+  max-width: 95vw;
+  max-height: 80vh;
+  overflow: auto;
+  margin: 0 auto;
+}
+
+.grid-cell.fade-in {
+  transition: all 0.2s ease;
+}

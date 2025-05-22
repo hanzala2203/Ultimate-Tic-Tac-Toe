@@ -1,0 +1,353 @@
+/* ------------------------------
+   Base Neon Theme
+------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle, #386666 0%, #000000 100%);
+  color: #00ffe0;
+  text-align: center;
+  overflow-x: hidden;
+  animation: bgpulse 15s infinite alternate;
+}
+
+@keyframes bgpulse {
+  0% { background-color: #1b342d; }
+  100% { background-color: #000000; }
+}
+
+/* ------------------------------
+   App Layout
+------------------------------ */
+.app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+/* Header & Footer */
+.header-bar {
+  width: 100%;
+  background: #000;
+  padding: 20px 10px;
+  box-shadow: 0 0 20px #00ffff inset;
+}
+
+.footer-glow {
+  width: 100%;
+  height: 10px;
+  background: #00ffff;
+  box-shadow: 0 0 25px #00ffff, 0 0 60px #00ffff;
+  margin-top: auto;
+}
+
+/* Title */
+.neon-title {
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 8px #74bbbb, 0 0 20px #00ffff;
+  animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 8px #00ffff; }
+  100% { text-shadow: 0 0 20px #00ffff; }
+}
+
+/* ------------------------------
+   Buttons
+------------------------------ */
+button {
+  background-color: #8ad4cc;
+  color: #252424;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ffe0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #00ffe0, 0 0 25px #00ffe0;
+}
+
+/* ------------------------------
+   Game Container
+------------------------------ */
+.game-container {
+  padding: 20px;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ------------------------------
+   Grid Board
+------------------------------ */
+.grid-board {
+  display: grid;
+  margin: 0 auto;
+  gap: 2px;
+  padding: 10px;
+  background: #000;
+  border: 2px solid #5ba098;
+  box-shadow: 0 0 20px #00ffe0;
+  width: fit-content;
+}
+
+/* Optional Major Grid Lines (for 9x9/27x27) */
+.grid-cell.major-horizontal {
+  border-top: 2px solid #00ffff;
+}
+.grid-cell.major-vertical {
+  border-left: 2px solid #00ffff;
+}
+
+/* ------------------------------
+   Grid Cell
+------------------------------ */
+.grid-cell {
+  min-width: 40px;
+  min-height: 40px;
+  font-size: 18px;
+  background-color: #050505;
+  color: #00ffe0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00ffff22;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  font-family: monospace;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.grid-cell:hover {
+  background: #111;
+  transform: scale(1.05);
+  box-shadow: 0 0 6px #00ffe0;
+  cursor: pointer;
+}
+
+.active-subgrid {
+  box-shadow: inset 0 0 8px 3px #00ffff, 0 0 12px #00ffff;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* ------------------------------
+   Game Status
+------------------------------ */
+.game-status {
+  font-size: 24px;
+  margin: 20px 0;
+  color: #00ffff;
+  opacity: 0.8;
+  transition: all 0.5s ease-in-out;
+}
+
+.show-result {
+  animation: winnerFlash 1.2s ease infinite alternate;
+  font-size: 28px;
+  color: #ff00d4;
+  text-shadow: 0 0 10px #ff00d4, 0 0 20px #ff00d4;
+  opacity: 1;
+}
+
+@keyframes winnerFlash {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+/* ------------------------------
+   Panels / Overlays
+------------------------------ */
+.neon-panel {
+  padding: 40px;
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid #00ffff66;
+  border-radius: 16px;
+  box-shadow: 0 0 12px #00ffff, 0 0 30px #00ffff44 inset;
+  display: inline-block;
+  animation: pulsePanel 2.5s ease-in-out infinite;
+}
+
+@keyframes pulsePanel {
+  0% { box-shadow: 0 0 12px #00ffff, 0 0 30px #00ffff44 inset; }
+  100% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff77 inset; }
+}
+
+/* ------------------------------
+   Background Stars
+------------------------------ */
+.stars, .twinkle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.stars {
+  background-image: radial-gradient(#00ffff 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: scroll 100s linear infinite;
+}
+
+.twinkle {
+  background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+  background-size: 2px 2px;
+  animation: scrollTwinkle 200s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, -50%, 0); }
+}
+
+@keyframes scrollTwinkle {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(50%, 50%, 0); }
+}
+
+/* ------------------------------
+   Animation Utility
+------------------------------ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease;
+}
+.cell-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.cell-content.x {
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+.cell-content.o {
+  color: #ff00c8;
+  text-shadow: 0 0 10px #ff00c8, 0 0 20px #ff00c8;
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.neon-title {
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.neon-panel {
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 20px #ff00ff;
+  border: 1px solid #ff00ff;
+}
+.neon-title {
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.neon-panel {
+  border: 1px solid #ff00ff;
+  box-shadow: 0 0 20px #ff00ff;
+}
+/* Medium-sized buttons only for GameBoard */
+.game-btn {
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #111;
+  border: 2px solid #00f0ff;
+  color: #00f0ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px #00f0ff;
+  box-shadow: 0 0 10px #00f0ff40;
+}
+
+.game-btn:hover {
+  background-color: #00f0ff;
+  color: #000;
+  text-shadow: none;
+  box-shadow: 0 0 15px #00f0ff90;
+}
+@keyframes entrancePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.entrance-fade {
+  animation: entrancePop 0.8s ease-out;
+}
+
+.select-title {
+  display: inline-block;
+  font-size: 28px;
+  margin-bottom: 30px;
+  position: relative;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+.select-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+  background-size: 200%;
+  animation: underlineGlow 2s linear infinite;
+  border-radius: 2px;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes underlineGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes floatyMove {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.floaty {
+  animation: floatyMove 3s ease-in-out infinite;
+}
